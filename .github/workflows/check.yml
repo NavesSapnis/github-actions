@@ -11,7 +11,8 @@ jobs:
   tests:
     strategy:
       matrix:
-        versions: ["3.10", "3.11", "3.12"]
+        versions_python: ["3.10", "3.11", "3.12"]
+        versions_lib: ["8.4.1", "8.4", "8.0"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 
