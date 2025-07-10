@@ -2,17 +2,25 @@ name: CI
 
 on:
   push:
-    branches: [ "dev", "main" ]
+    branches: [ "main", "dev" ]
   pull_request:
     branches: [ "main", "dev" ]
 
 
 jobs:
   tests:
+    strategy:
+      matrix:
+        versions: ["3.2", "3.9.6", "3.10", "3.11", "3.12"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 
         uses: actions/checkout@v4
+
+      - name: python download
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.versions }}
 
       - name: Instal deps
         run: pip install -r requirements.txt
